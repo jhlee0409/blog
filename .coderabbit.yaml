@@ -1,0 +1,43 @@
+language: "ko-KR"
+early_access: false
+reviews:
+  profile: "chill"
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: true
+  review_status: true
+  collapse_walkthrough: false
+  auto_review:
+    enabled: true
+    drafts: false
+  path_instructions:
+    - path: "**/*.tsx"
+      instructions: |
+        Review the TypeScript code with a focus on compatibility with Next.js version 14.2. 
+        Specifically, check the following:
+        - Ensure the code follows TypeScript's official guidelines and best practices.
+        - Validate the implementation against Next.js 14.2 official documentation.
+        - Identify and highlight any discrepancies or potential improvements.
+    - path: "**/*.ts"
+      instructions: |
+        Review the TypeScript code with a focus on ensuring that it adheres to TypeScript's official guidelines and best practices. 
+        Specifically:
+        - Check for correct type usage and adherence to TypeScript’s type system.
+        - Validate the code against TypeScript's official documentation.
+        - Identify and suggest improvements or potential issues related to type safety, code structure, and general TypeScript best practices.
+    - path: "**/*.js"
+      instructions: |
+        Review the JavaScript code in accordance with the Google JavaScript Style Guide. 
+        Specifically:
+        - Ensure the code adheres to best practices as outlined in the style guide.
+        - Identify any deviations and suggest improvements for better compliance.
+
+    - path: "tests/**/*"
+      instructions: |
+        Review the unit tests written using Jest and React Testing Library. Focus on:
+        - Ensuring the tests follow best practices for Jest and React Testing Library.
+        - Verifying that test names are descriptive and clearly convey the intent of each test.
+        - Suggesting improvements where necessary to enhance test clarity, reliability, and maintainability.
+chat:
+  auto_reply: true
+  

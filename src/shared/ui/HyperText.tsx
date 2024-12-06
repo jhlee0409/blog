@@ -32,6 +32,7 @@ export default function HyperText({
   const [trigger, setTrigger] = useState(false);
   const interactions = useRef(0);
   const isFirstRender = useRef(true);
+  const intervalRef = useRef<NodeJS.Timeout>();
 
   const triggerAnimation = () => {
     interactions.current = 0;
@@ -39,9 +40,9 @@ export default function HyperText({
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       if (!animateOnLoad && isFirstRender.current) {
-        clearInterval(interval);
+        clearInterval(intervalRef.current);
         isFirstRender.current = false;
         return;
       }
@@ -58,11 +59,13 @@ export default function HyperText({
         interactions.current = interactions.current + 0.1;
       } else {
         setTrigger(false);
-        clearInterval(interval);
+        clearInterval(intervalRef.current);
       }
     }, duration / (text.length * 10));
     // Clean up interval on unmount
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(intervalRef.current);
+    };
   }, [text, duration, trigger, animateOnLoad]);
 
   return (

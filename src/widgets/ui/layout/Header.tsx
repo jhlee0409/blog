@@ -1,6 +1,5 @@
 "use client";
-import HyperText from "@/components/magicui/hyper-text";
-import { Dock, DockIcon } from "@/components/magicui/dock";
+import { Dock, HyperText } from "@/shared/ui";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -21,15 +20,15 @@ export default function Header() {
             text="UNPACKER"
           />
         </div>
-        <Dock
+        <Dock.Container
           direction="middle"
           className="m-0"
           distance={200}
           magnification={100}
         >
-          <DockIcon>Post</DockIcon>
-          <DockIcon>About</DockIcon>
-        </Dock>
+          <Dock.Icon>Post</Dock.Icon>
+          <Dock.Icon>About</Dock.Icon>
+        </Dock.Container>
       </div>
     </div>
   );

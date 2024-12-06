@@ -1,5 +1,5 @@
-"use client";
+import { HomePage } from "@/pages/home/ui";
 
 export default function Home() {
-  return <div className="h-[200dvh] w-full">TEST PAGE</div>;
+  return <HomePage />;
 }

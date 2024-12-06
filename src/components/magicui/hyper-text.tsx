@@ -30,11 +30,11 @@ export default function HyperText({
 }: HyperTextProps) {
   const [displayText, setDisplayText] = useState(text.split(""));
   const [trigger, setTrigger] = useState(false);
-  const interations = useRef(0);
+  const interactions = useRef(0);
   const isFirstRender = useRef(true);
 
   const triggerAnimation = () => {
-    interations.current = 0;
+    interactions.current = 0;
     setTrigger(true);
   };
 
@@ -45,17 +45,17 @@ export default function HyperText({
         isFirstRender.current = false;
         return;
       }
-      if (interations.current < text.length) {
+      if (interactions.current < text.length) {
         setDisplayText((t) =>
           t.map((l, i) =>
             l === " "
               ? l
-              : i <= interations.current
+              : i <= interactions.current
               ? text[i]
               : alphabets[getRandomInt(26)]
           )
         );
-        interations.current = interations.current + 0.1;
+        interactions.current = interactions.current + 0.1;
       } else {
         setTrigger(false);
         clearInterval(interval);

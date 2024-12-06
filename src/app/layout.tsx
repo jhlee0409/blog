@@ -21,7 +21,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          "flex flex-col w-screen items-center overflow-x-hidden"
+          "flex flex-col w-screen items-center overflow-x-hidden px-4"
         )}
       >
         <Header />

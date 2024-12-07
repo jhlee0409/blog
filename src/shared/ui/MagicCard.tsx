@@ -17,6 +17,7 @@ export default function MagicCard({
   gradientSize = 200,
   gradientColor = "#262626",
   gradientOpacity = 0.8,
+  ...props
 }: MagicCardProps) {
   const mouseX = useMotionValue(-gradientSize);
   const mouseY = useMotionValue(-gradientSize);
@@ -48,6 +49,7 @@ export default function MagicCard({
         "group relative flex size-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-900 border text-black dark:text-white",
         className
       )}
+      {...props}
     >
       <div className="relative z-10">{children}</div>
       <motion.div

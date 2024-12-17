@@ -4,7 +4,7 @@ import { MagicCard } from "@/shared/ui";
 import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
 import { useRouter } from "next/navigation";
 import { NotionPage } from "@/shared/types/notion";
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 
 type Props = {
   notion: QueryDatabaseResponse;
@@ -45,15 +45,12 @@ const HomePage = ({ notion }: Props) => {
                 {summary.plain_text}
               </p>
             ))}
-            <div className="flex gap-2 pt-4">
-              {page.properties.tags.multi_select.map((tag) => (
-                <span
-                  className="text-sm line-clamp-1 text-white"
-                  key={tag.name}
-                >
-                  {`#${tag.name}`}
-                </span>
-              ))}
+            <div className="flex justify-center">
+              <p className="pt-4 line-clamp-1 w-full text-sm text-white">
+                {page.properties.tags.multi_select.map((tag) => (
+                  <Fragment key={tag.name}>{`#${tag.name} `}</Fragment>
+                ))}
+              </p>
             </div>
           </div>
         </MagicCard>

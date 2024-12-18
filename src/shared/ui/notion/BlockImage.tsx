@@ -2,10 +2,25 @@ import { ImageBlock } from "@/shared/types/block";
 import Image from "next/image";
 
 const BlockImage = (data: ImageBlock) => {
+  if (data.type === "file") {
+    return (
+      <div className="py-6 flex flex-col items-center">
+        <Image
+          src={data.file.url}
+          alt="image"
+          width={0}
+          height={0}
+          sizes="100vw"
+          className="w-auto min-w-[30%] h-auto"
+          onBlur={() => {}}
+        />
+      </div>
+    );
+  }
   return data.caption.map((caption, idx) => {
     return (
       <div
-        className="py-6 flex flex-col items-center h-[200px]"
+        className="py-6 flex flex-col items-center"
         key={caption.plain_text + idx}
       >
         <Image
@@ -14,7 +29,7 @@ const BlockImage = (data: ImageBlock) => {
           width={0}
           height={0}
           sizes="100vw"
-          className="w-[30%] h-auto"
+          className="w-auto min-w-[30%] h-auto"
           onBlur={() => {}}
         />
         <caption className="inline text-sm text-gray-500">

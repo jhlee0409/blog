@@ -5,7 +5,7 @@ import darcula from "react-syntax-highlighter/dist/cjs/styles/prism/one-dark";
 
 const CodeBlock = (data: CodeBlockType) => {
   return (
-    <div className="rounded-md overflow-hidden pt-6">
+    <div className="rounded-md overflow-hidden py-6">
       <div className="flex justify-between bg-[rgb(40,_44,_52)] px-4 pt-3">
         <div className="flex items-center gap-2">
           <div className="bg-[#f45f57] w-2.5 h-2.5 rounded-full" />

@@ -17,7 +17,7 @@ const CommonHeading = (data: Props) => {
       className={cn(
         notionStyles(text.annotations),
         {
-          "text-red-500 px-1.5 rounded-sm py-0.5 bg-[#6e768166] mr-0.5 text-sm h-fit":
+          "text-red-300 px-1.5 rounded-sm py-0.5 bg-[#87837826] mr-0.5 text-sm h-fit":
             text.annotations.code,
           "underline text-gray-400 px-1.5": text.text.link,
         },

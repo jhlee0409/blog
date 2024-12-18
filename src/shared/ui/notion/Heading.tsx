@@ -33,11 +33,11 @@ const CommonHeading = (data: Props) => {
 const notionHeadBlocks = {
   heading_1: {
     tag: "h1",
-    className: "bold text-4xl mt-4 mb-2 border-b border-[#21262d] pb-2.5",
+    className: "bold text-4xl mt-4 mb-2 border-b-2 border-[#21262d] pb-2.5",
   },
   heading_2: {
     tag: "h2",
-    className: "bold text-3xl mt-4 mb-2 border-b border-[#21262d] pb-2.5",
+    className: "bold text-3xl mt-4 mb-2 border-b-2 border-[#21262d] pb-1.5",
   },
   heading_3: {
     tag: "h3",

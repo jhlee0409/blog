@@ -16,16 +16,18 @@ const HomePage = ({ notion }: Props) => {
 
   const posts = useMemo(() => notion.results as NotionPage[], [notion.results]);
 
+  const handleRouter = (pageId: string) => {
+    router.push(`/post/${pageId}`);
+  };
+
   return (
-    <div className={"flex  w-full flex-col gap-4  lg:flex-row lg:w-1/2 w-full"}>
+    <div className={"flex w-full flex-col gap-4 xl:flex-row md:w-3/4 w-full"}>
       {posts.map((page) => (
         <MagicCard
           key={page.id}
           className="cursor-pointer h-[300px] lg:h-[250px] flex-col items-center justify-center shadow-2xl text-4xl px-4"
           gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
-          onClick={() => {
-            router.push(`/post/${page.id}`);
-          }}
+          onClick={() => handleRouter(page.id)}
         >
           <div className="flex flex-col justify-center items-center">
             {page.properties.title.title.map((title) => (

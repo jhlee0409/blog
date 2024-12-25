@@ -21,7 +21,7 @@ const HomePage = ({ notion }: Props) => {
   };
 
   return (
-    <div className={"flex w-full flex-col gap-4 xl:flex-row md:w-3/4 w-full"}>
+    <div className={"grid grid-cols-1 md:grid-cols-2 gap-4"}>
       {posts.map((page) => (
         <MagicCard
           key={page.id}

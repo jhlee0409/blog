@@ -21,7 +21,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          "dark flex flex-col w-screen items-center overflow-x-hidden px-4 font-nexon"
+          "dark flex flex-col w-screen items-center overflow-x-hidden px-4 pb-[100px] font-nexon"
         )}
       >
         <Header />

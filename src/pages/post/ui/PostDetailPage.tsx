@@ -20,7 +20,7 @@ const PostDetailPage = ({ data }: Props) => {
   const blocks = data.results as Block[];
 
   return (
-    <div className="w-full px-4 max-w-screen-lg mx-auto pb-4">
+    <div className="w-full px-4 max-w-screen-lg mx-auto pb-[100px]">
       {blocks.map(BlockComponent)}
     </div>
   );

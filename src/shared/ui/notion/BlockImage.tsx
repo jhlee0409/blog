@@ -2,8 +2,6 @@ import { ImageBlock } from "@/shared/types/block";
 import Image from "next/image";
 
 const BlockImage = (data: ImageBlock) => {
-  console.log(data);
-
   if (data.type === "external") {
     return (
       <div className="py-6 flex flex-col items-center">
@@ -12,8 +10,8 @@ const BlockImage = (data: ImageBlock) => {
           alt="image"
           width={0}
           height={0}
-          sizes="100vw"
-          className="w-auto min-w-[30%] h-auto"
+          sizes="sizes='(max-width: 1024px) 50vw, (max-width: 768px) 100vw, 33vw'"
+          className="w-auto"
           onBlur={() => {}}
         />
       </div>
@@ -28,8 +26,8 @@ const BlockImage = (data: ImageBlock) => {
           alt="image"
           width={0}
           height={0}
-          sizes="100vw"
-          className="w-auto min-w-[30%] h-auto"
+          sizes="sizes='(max-width: 1024px) 50vw, (max-width: 768px) 100vw, 33vw'"
+          className="w-auto"
           onBlur={() => {}}
         />
       </div>
@@ -46,8 +44,8 @@ const BlockImage = (data: ImageBlock) => {
           alt={caption.plain_text}
           width={0}
           height={0}
-          sizes="100vw"
-          className="w-auto min-w-[30%] h-auto"
+          sizes="sizes='(max-width: 1024px) 50vw, (max-width: 768px) 100vw, 33vw'"
+          className="w-auto"
           onBlur={() => {}}
         />
         <caption className="inline text-sm text-gray-500">

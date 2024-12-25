@@ -67,10 +67,13 @@ type Caption = {
 
 export type ImageBlock = {
   caption: Caption[];
-  type: "file";
+  type: "file" | "external";
   file: {
     url: string;
     expiry_time: string;
+  };
+  external: {
+    url: string;
   };
 };
 

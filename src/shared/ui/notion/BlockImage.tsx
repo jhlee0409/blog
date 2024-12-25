@@ -2,6 +2,24 @@ import { ImageBlock } from "@/shared/types/block";
 import Image from "next/image";
 
 const BlockImage = (data: ImageBlock) => {
+  console.log(data);
+
+  if (data.type === "external") {
+    return (
+      <div className="py-6 flex flex-col items-center">
+        <Image
+          src={data.external.url}
+          alt="image"
+          width={0}
+          height={0}
+          sizes="100vw"
+          className="w-auto min-w-[30%] h-auto"
+          onBlur={() => {}}
+        />
+      </div>
+    );
+  }
+
   if (data.type === "file") {
     return (
       <div className="py-6 flex flex-col items-center">

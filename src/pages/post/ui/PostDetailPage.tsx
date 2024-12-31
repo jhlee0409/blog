@@ -16,15 +16,17 @@ type Props = {
   data: ListBlockChildrenResponse;
 };
 
-const PostDetailPage = ({ data }: Props) => {
-  const blocks = data.results as Block[];
+export default function PostDetailPage({ data }: Props) {
+  const blocks = data?.results as Block[] | null;
+
+  if (!blocks) return null;
 
   return (
     <div className="w-full px-4 max-w-screen-lg mx-auto">
       {blocks.map(BlockComponent)}
     </div>
   );
-};
+}
 
 const BlockComponent = (block: Block) => {
   const [children, setChildren] =
@@ -72,5 +74,3 @@ const BlockComponent = (block: Block) => {
     </Fragment>
   );
 };
-
-export default PostDetailPage;

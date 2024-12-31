@@ -10,15 +10,16 @@ type Props = {
   notion: QueryDatabaseResponse;
 };
 
-const HomePage = ({ notion }: Props) => {
+export default function HomePage({ notion }: Props) {
   const { theme } = useTheme();
   const router = useRouter();
 
-  const posts = useMemo(() => notion.results as NotionPage[], [notion.results]);
-
+  const posts = (notion?.results as NotionPage[]) || null;
   const handleRouter = (pageId: string) => {
     router.push(`/post/${pageId}`);
   };
+
+  if (!posts || posts.length === 0) return null;
 
   return (
     <div className={"grid grid-cols-1 md:grid-cols-2 gap-4"}>
@@ -59,6 +60,4 @@ const HomePage = ({ notion }: Props) => {
       ))}
     </div>
   );
-};
-
-export default HomePage;
+}

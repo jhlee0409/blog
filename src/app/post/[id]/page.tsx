@@ -1,4 +1,4 @@
-import { PostDetailPage } from "@/pages/post/ui";
+import PostDetailPage from "@/pages/post/ui/PostDetailPage";
 import { Client } from "@notionhq/client";
 
 const notion = new Client({

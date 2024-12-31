@@ -1,9 +1,19 @@
 "use client";
+import { cn } from "@/shared/lib/utils";
 import { Dock, HyperText } from "@/shared/ui";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
+const PATHS = {
+  Home: "/",
+  About: "/about",
+};
+
 export default function Header() {
+  const path = usePathname();
+
   return (
     <div className="py-10 sticky top-0 z-10">
       <div className="relative flex flex-col items-center py-2 w-[30dvw] rounded-full gap-2">
@@ -26,8 +36,22 @@ export default function Header() {
           distance={200}
           magnification={100}
         >
-          <Dock.Icon>Post</Dock.Icon>
-          <Dock.Icon>About</Dock.Icon>
+          {Object.keys(PATHS).map((key) => {
+            const isActive = path === PATHS[key as keyof typeof PATHS];
+
+            return (
+              <Dock.Icon key={key}>
+                <Link
+                  href={PATHS[key as keyof typeof PATHS]}
+                  className={cn({
+                    "font-bold bg-gray-500 rounded-lg px-2": isActive,
+                  })}
+                >
+                  {key}
+                </Link>
+              </Dock.Icon>
+            );
+          })}
         </Dock.Container>
       </div>
     </div>

@@ -1,12 +1,12 @@
-import { HomePage } from "@/pages/home/ui";
+import HomePage from "@/pages/home/ui/HomePage";
 
 import { Client } from "@notionhq/client";
 
-export default async function Home() {
-  const notion = new Client({
-    auth: process.env.NOTION_SECRET_KEY,
-  });
+const notion = new Client({
+  auth: process.env.NOTION_SECRET_KEY,
+});
 
+export default async function Home() {
   const data = await notion.databases.query({
     database_id: process.env.NEXT_PUBLIC_NOTION_PAGE_ID!,
     filter: {

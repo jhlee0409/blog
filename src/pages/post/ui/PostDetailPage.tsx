@@ -2,7 +2,7 @@
 
 import { ListBlockChildrenResponse } from "@notionhq/client/build/src/api-endpoints";
 import { Block } from "@/shared/types/block";
-import React, { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import {
   CodeBlock,
   BulletList,
@@ -11,6 +11,7 @@ import {
   BlockImage,
 } from "@/shared/ui/notion";
 import Link from "next/link";
+import { useBlockChildren } from "../hooks/useBlockChildren";
 
 type Props = {
   data: ListBlockChildrenResponse;
@@ -23,14 +24,18 @@ export default function PostDetailPage({ data }: Props) {
 
   return (
     <div className="w-full px-4 max-w-screen-lg mx-auto">
-      {blocks.map(BlockComponent)}
+      {blocks.map((block) => (
+        <BlockComponent key={block.id} block={block} />
+      ))}
     </div>
   );
 }
 
-const BlockComponent = (block: Block) => {
-  const [children, setChildren] =
-    React.useState<ListBlockChildrenResponse | null>(null);
+const BlockComponent = ({ block }: { block: Block }) => {
+  const { children, isLoading } = useBlockChildren(
+    block.has_children ? block.id : ""
+  );
+
   const isHead =
     block.type === "heading_1" ||
     block.type === "heading_2" ||
@@ -39,20 +44,9 @@ const BlockComponent = (block: Block) => {
     block.type === "heading_5" ||
     block.type === "heading_6";
 
-  useEffect(() => {
-    if (!block || !block.has_children) return;
-    (async () => {
-      const res = await fetch(`/api/block/${block.id}`, {
-        cache: "force-cache",
-      });
-      const data = await res.json();
-      setChildren(data);
-    })();
-  }, [block]);
-
   if ("child_page" in block)
     return (
-      <div key={block.id} className="w-fit">
+      <div className="w-fit">
         <Link href={`/post/${block.id}`}>
           <p className="p-1 pt-4 border-b border-[#21262d]">
             📄 {block.child_page.title}
@@ -60,8 +54,9 @@ const BlockComponent = (block: Block) => {
         </Link>
       </div>
     );
+
   return (
-    <Fragment key={block.id}>
+    <Fragment>
       {isHead ? <Heading {...block} /> : null}
       {block.type === "image" ? <BlockImage {...block.image} /> : null}
       {block.type === "bulleted_list_item" ? (
@@ -70,7 +65,15 @@ const BlockComponent = (block: Block) => {
       {block.type === "code" ? <CodeBlock {...block.code} /> : null}
       {block.type === "paragraph" ? <Paragraph {...block.paragraph} /> : null}
 
-      {children ? <PostDetailPage data={children} /> : null}
+      {isLoading ? (
+        <div className="pl-4 py-2">
+          <div className="animate-pulse h-4 bg-gray-200 rounded w-2/3" />
+        </div>
+      ) : children ? (
+        <div className="pl-4">
+          <PostDetailPage data={children} />
+        </div>
+      ) : null}
     </Fragment>
   );
 };
